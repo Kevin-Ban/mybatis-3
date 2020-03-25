@@ -31,6 +31,11 @@ import org.apache.ibatis.session.SqlSession;
  * @author Eduardo Macarron
  * @author Lasse Voss
  */
+
+/**
+ * **** 用于保存Mapper.xml文件里面的信息，如sql语句等等
+ * 在mybatis首次加载的时候把xml文件解析出来并保存
+ */
 public class MapperRegistry {
 
   private final Configuration config;
@@ -40,6 +45,13 @@ public class MapperRegistry {
     this.config = config;
   }
 
+  /**
+   * **** 获取mapper.xml 文件里面的一条sql
+   * @param type
+   * @param sqlSession
+   * @param <T>
+   * @return
+   */
   @SuppressWarnings("unchecked")
   public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
     final MapperProxyFactory<T> mapperProxyFactory = (MapperProxyFactory<T>) knownMappers.get(type);

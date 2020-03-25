@@ -45,6 +45,10 @@ public class MapperProxyFactory<T> {
 
   @SuppressWarnings("unchecked")
   protected T newInstance(MapperProxy<T> mapperProxy) {
+    // 在底层使用动态代理来根据mapper接口创建对象
+    // 第一个参数是类加载器，用于保证类与类之间的兼容性
+    // 第二个参数是接口类，代表需要代理的接口
+    // 第三个参数是接口类里面的接口方法的处理逻辑
     return (T) Proxy.newProxyInstance(mapperInterface.getClassLoader(), new Class[] { mapperInterface }, mapperProxy);
   }
 

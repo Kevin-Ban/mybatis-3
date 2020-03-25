@@ -191,6 +191,14 @@ public abstract class BaseExecutor implements Executor {
     }
   }
 
+  /**
+   * 根据参数类型等数据生成缓存的key，用于缓存的查询和添加
+   * @param ms
+   * @param parameterObject
+   * @param rowBounds
+   * @param boundSql
+   * @return
+   */
   @Override
   public CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowBounds rowBounds, BoundSql boundSql) {
     if (closed) {
@@ -318,14 +326,31 @@ public abstract class BaseExecutor implements Executor {
     }
   }
 
+  /**
+   * 模板方法，用于保存算法的具体实现
+   * @param ms
+   * @param parameter
+   * @param rowBounds
+   * @param resultHandler
+   * @param key
+   * @param boundSql
+   * @param <E>
+   * @return
+   * @throws SQLException
+   */
   private <E> List<E> queryFromDatabase(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql) throws SQLException {
     List<E> list;
+    // ???
     localCache.putObject(key, EXECUTION_PLACEHOLDER);
     try {
+      // doQuery是模板方法，在子类中有具体的实现
+      // 不同的子类该方法的实现是不一样的
       list = doQuery(ms, parameter, rowBounds, resultHandler, boundSql);
     } finally {
+      // ???
       localCache.removeObject(key);
     }
+    // ???
     localCache.putObject(key, list);
     if (ms.getStatementType() == StatementType.CALLABLE) {
       localOutputParameterCache.putObject(key, parameter);

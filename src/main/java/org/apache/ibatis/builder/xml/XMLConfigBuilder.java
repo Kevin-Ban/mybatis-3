@@ -51,6 +51,10 @@ import org.apache.ibatis.type.JdbcType;
  * @author Clinton Begin
  * @author Kazuki Shimizu
  */
+
+/**
+ * **** 解析Config文件
+ */
 public class XMLConfigBuilder extends BaseBuilder {
 
   private boolean parsed;
@@ -358,6 +362,11 @@ public class XMLConfigBuilder extends BaseBuilder {
     }
   }
 
+  /**
+   * **** mapper.xml 文件的解析
+   * @param parent
+   * @throws Exception
+   */
   private void mapperElement(XNode parent) throws Exception {
     if (parent != null) {
       for (XNode child : parent.getChildren()) {
@@ -371,6 +380,7 @@ public class XMLConfigBuilder extends BaseBuilder {
           if (resource != null && url == null && mapperClass == null) {
             ErrorContext.instance().resource(resource);
             InputStream inputStream = Resources.getResourceAsStream(resource);
+            // 解析mapper.xml
             XMLMapperBuilder mapperParser = new XMLMapperBuilder(inputStream, configuration, resource, configuration.getSqlFragments());
             mapperParser.parse();
           } else if (resource == null && url != null && mapperClass == null) {

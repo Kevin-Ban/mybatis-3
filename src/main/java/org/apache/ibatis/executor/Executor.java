@@ -30,6 +30,11 @@ import org.apache.ibatis.transaction.Transaction;
 /**
  * @author Clinton Begin
  */
+
+/**
+ * *** 用于执行sql，该接口类有抽象子类
+ * 子类中使用了模板方法模式，在子类中定义好了算法，然后将具体步骤延迟到了最终的子类来实现
+ */
 public interface Executor {
 
   ResultHandler NO_RESULT_HANDLER = null;

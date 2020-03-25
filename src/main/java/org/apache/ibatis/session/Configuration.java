@@ -98,6 +98,10 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
 /**
  * @author Clinton Begin
  */
+
+/**
+ * *** mybatis的配置一般都保存在这个类中，如数据库连接，是否开启缓存等等
+ */
 public class Configuration {
 
   protected Environment environment;
@@ -107,8 +111,14 @@ public class Configuration {
   protected boolean mapUnderscoreToCamelCase;
   protected boolean aggressiveLazyLoading;
   protected boolean multipleResultSetsEnabled = true;
+  /**
+   * 是否自动生成id
+   */
   protected boolean useGeneratedKeys;
   protected boolean useColumnLabel = true;
+  /**
+   * 是否开启缓存，一级缓存，二级缓存等
+   */
   protected boolean cacheEnabled = true;
   protected boolean callSettersOnNulls;
   protected boolean useActualParamName = true;
@@ -144,6 +154,10 @@ public class Configuration {
    */
   protected Class<?> configurationFactory;
 
+  /**
+   * **** 用于保存mapper文件里面的信息，如sql语句等等
+   * 当有需要时，就从这里把sql读取出来执行
+   */
   protected final MapperRegistry mapperRegistry = new MapperRegistry(this);
   protected final InterceptorChain interceptorChain = new InterceptorChain();
   protected final TypeHandlerRegistry typeHandlerRegistry = new TypeHandlerRegistry(this);
@@ -644,6 +658,7 @@ public class Configuration {
     } else {
       executor = new SimpleExecutor(this, transaction);
     }
+    // 如果配置文件里面开启了缓存，则使用有缓存的执行器，该执行器会把运行的结果进行保存
     if (cacheEnabled) {
       executor = new CachingExecutor(executor);
     }

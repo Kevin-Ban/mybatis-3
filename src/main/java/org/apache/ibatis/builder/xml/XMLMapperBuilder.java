@@ -53,6 +53,10 @@ import org.apache.ibatis.type.TypeHandler;
  * @author Clinton Begin
  * @author Kazuki Shimizu
  */
+
+/**
+ * **** 根据mapper.xml里面的信息构建sql语句
+ */
 public class XMLMapperBuilder extends BaseBuilder {
 
   private final XPathParser parser;

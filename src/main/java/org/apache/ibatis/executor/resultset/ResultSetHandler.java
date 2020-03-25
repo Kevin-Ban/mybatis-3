@@ -25,6 +25,10 @@ import org.apache.ibatis.cursor.Cursor;
 /**
  * @author Clinton Begin
  */
+
+/**
+ * *** 数据库返回结果的操作类，将sql的执行结果封装成list集合
+ */
 public interface ResultSetHandler {
 
   <E> List<E> handleResultSets(Statement stmt) throws SQLException;

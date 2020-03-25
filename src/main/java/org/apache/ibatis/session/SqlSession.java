@@ -29,6 +29,10 @@ import org.apache.ibatis.executor.BatchResult;
  *
  * @author Clinton Begin
  */
+
+/**
+ * *** 主要用于进行数据库操作
+ */
 public interface SqlSession extends Closeable {
 
   /**

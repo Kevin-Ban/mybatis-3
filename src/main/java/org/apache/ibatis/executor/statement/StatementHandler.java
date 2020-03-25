@@ -28,6 +28,12 @@ import org.apache.ibatis.session.ResultHandler;
 /**
  * @author Clinton Begin
  */
+
+/**
+ * *** 用于堆jdbc的操作进行封装
+ * 采用了模板方法模式来实现，该接口类有抽象的子类，在子类中配置好了算法步骤
+ * 并且将最终的步骤放到了最终的子类里面，由子类实现
+ */
 public interface StatementHandler {
 
   Statement prepare(Connection connection, Integer transactionTimeout)

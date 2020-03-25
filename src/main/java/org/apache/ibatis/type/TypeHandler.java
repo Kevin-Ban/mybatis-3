@@ -23,6 +23,11 @@ import java.sql.SQLException;
 /**
  * @author Clinton Begin
  */
+
+/**
+ * *** 将返回结果转换成指定的数据类型
+ * @param <T>
+ */
 public interface TypeHandler<T> {
 
   void setParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType) throws SQLException;
