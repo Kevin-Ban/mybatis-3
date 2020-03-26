@@ -76,12 +76,21 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
     lookupConstructor = lookup;
   }
 
+  /**
+   * ***** mybatis的mapper接口调用方法时，实际调用的是该方法，其中args为其中的参数
+   * @param proxy
+   * @param method
+   * @param args
+   * @return
+   * @throws Throwable
+   */
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
     try {
       if (Object.class.equals(method.getDeclaringClass())) {
         return method.invoke(this, args);
       } else {
+        // 查看方法是否被代理过，如果代理过了就直接在缓存中获取到该方法的代理对象，之后可以直接利用该对象进行处理
         return cachedInvoker(method).invoke(proxy, method, args, sqlSession);
       }
     } catch (Throwable t) {

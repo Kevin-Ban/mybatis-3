@@ -46,7 +46,7 @@ public class MapperRegistry {
   }
 
   /**
-   * **** 获取mapper.xml 文件里面的一条sql
+   * **** 获取mapper.xml 文件里面的一条sql，获取接口的代理方法
    * @param type
    * @param sqlSession
    * @param <T>

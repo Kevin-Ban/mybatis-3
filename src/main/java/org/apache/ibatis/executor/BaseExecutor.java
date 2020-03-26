@@ -327,7 +327,7 @@ public abstract class BaseExecutor implements Executor {
   }
 
   /**
-   * 模板方法，用于保存算法的具体实现
+   * ****  模板方法，用于保存算法的具体实现
    * @param ms
    * @param parameter
    * @param rowBounds

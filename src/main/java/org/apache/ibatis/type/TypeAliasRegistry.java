@@ -35,6 +35,11 @@ import org.apache.ibatis.io.Resources;
 /**
  * @author Clinton Begin
  */
+
+/**
+ * **** xml文件里面的parameterType和resultType
+ * 之所以mybatis可以同时识别hashmap和HashMap，就是因为在这里面注册了对应的类型
+ */
 public class TypeAliasRegistry {
 
   private final Map<String, Class<?>> typeAliases = new HashMap<>();

@@ -474,6 +474,7 @@ public class MapperAnnotationBuilder {
         }
         Annotation sqlAnnotation = method.getAnnotation(sqlAnnotationType);
         final String[] strings = (String[]) sqlAnnotation.getClass().getMethod("value").invoke(sqlAnnotation);
+        // **** 从注解的字符串中构造sql并返回
         return buildSqlSourceFromStrings(strings, parameterType, languageDriver);
       } else if (sqlProviderAnnotationType != null) {
         Annotation sqlProviderAnnotation = method.getAnnotation(sqlProviderAnnotationType);

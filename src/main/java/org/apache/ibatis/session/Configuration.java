@@ -155,8 +155,7 @@ public class Configuration {
   protected Class<?> configurationFactory;
 
   /**
-   * **** 用于保存mapper文件里面的信息，如sql语句等等
-   * 当有需要时，就从这里把sql读取出来执行
+   * **** 用于保存mapper接口的信息，这里不保存sql语句
    */
   protected final MapperRegistry mapperRegistry = new MapperRegistry(this);
   protected final InterceptorChain interceptorChain = new InterceptorChain();
@@ -164,6 +163,9 @@ public class Configuration {
   protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
   protected final LanguageDriverRegistry languageRegistry = new LanguageDriverRegistry();
 
+  /**
+   * 用于保存从mapper.xml或者注解中读取得到的信息，包括sql语句，参数值，返回值等等
+   */
   protected final Map<String, MappedStatement> mappedStatements = new StrictMap<MappedStatement>("Mapped Statements collection")
       .conflictMessageProducer((savedValue, targetValue) ->
           ". please check " + savedValue.getResource() + " and " + targetValue.getResource());
@@ -826,6 +828,8 @@ public class Configuration {
   }
 
   public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
+    // 根据Class对象获取到对应的mapper代理类
+    // 代理类被保存在configuration对象里面
     return mapperRegistry.getMapper(type, sqlSession);
   }
 
