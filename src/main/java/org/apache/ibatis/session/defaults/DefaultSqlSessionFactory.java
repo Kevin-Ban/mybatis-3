@@ -47,6 +47,11 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
     return openSessionFromDataSource(configuration.getDefaultExecutorType(), null, false);
   }
 
+  /**
+   * 自动提交事务
+   * @param autoCommit
+   * @return
+   */
   @Override
   public SqlSession openSession(boolean autoCommit) {
     return openSessionFromDataSource(configuration.getDefaultExecutorType(), null, autoCommit);
