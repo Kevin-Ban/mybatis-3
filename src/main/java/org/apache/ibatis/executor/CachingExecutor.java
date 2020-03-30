@@ -100,6 +100,8 @@ public class CachingExecutor implements Executor {
   @Override
   public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql)
       throws SQLException {
+    // **** 二级缓存是从configuration对象中的MappedStatement中获取的，因为这个对象是全局对象，所以二级缓存是全局的
+    // 它并不是CachingExecutor创建的
     Cache cache = ms.getCache();
     // 如果缓存不为空，则获取缓存中的数据，否则继续执行
     if (cache != null) {
