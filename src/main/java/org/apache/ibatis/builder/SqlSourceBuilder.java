@@ -68,6 +68,11 @@ public class SqlSourceBuilder extends BaseBuilder {
       return "?";
     }
 
+    /**
+     * **** 处理 #{} 占位符
+     * @param content
+     * @return
+     */
     private ParameterMapping buildParameterMapping(String content) {
       Map<String, String> propertiesMap = parseParameterMapping(content);
       String property = propertiesMap.get("property");

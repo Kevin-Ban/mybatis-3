@@ -31,6 +31,10 @@ import org.apache.ibatis.session.Configuration;
 /**
  * @author Clinton Begin
  */
+
+/**
+ * **** 用于保存从xml或注解中获取到的sql
+ */
 public final class MappedStatement {
 
   private String resource;

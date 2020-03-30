@@ -192,7 +192,7 @@ public abstract class BaseExecutor implements Executor {
   }
 
   /**
-   * 根据参数类型等数据生成缓存的key，用于缓存的查询和添加
+   * **** 一级缓存 根据参数类型等数据生成缓存的key，用于缓存的查询和添加
    * @param ms
    * @param parameterObject
    * @param rowBounds
@@ -267,6 +267,9 @@ public abstract class BaseExecutor implements Executor {
     }
   }
 
+  /**
+   * **** 清理一级缓存
+   */
   @Override
   public void clearLocalCache() {
     if (!closed) {
@@ -340,6 +343,7 @@ public abstract class BaseExecutor implements Executor {
    */
   private <E> List<E> queryFromDatabase(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql) throws SQLException {
     List<E> list;
+    // 处理一级缓存
     // ???
     localCache.putObject(key, EXECUTION_PLACEHOLDER);
     try {

@@ -24,6 +24,11 @@ import org.apache.ibatis.cache.CacheException;
 /**
  * @author Clinton Begin
  */
+
+/**
+ * 用于存放一级缓存，
+ * key：1254654476:-786096906:mybatis.mapper.CityMapper.query:0:2147483647:select * from city where name like concat('%', ?, '%')::development
+ */
 public class PerpetualCache implements Cache {
 
   private final String id;
