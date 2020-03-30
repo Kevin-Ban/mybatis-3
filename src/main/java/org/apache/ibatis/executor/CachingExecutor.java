@@ -44,6 +44,10 @@ public class CachingExecutor implements Executor {
   private final Executor delegate;
   private final TransactionalCacheManager tcm = new TransactionalCacheManager();
 
+  /**
+   * **** 二级缓存的执行器使用了装饰器模式，实际查询sql时，调用的也是普通excutor，只不过在执行完成之后会把结果进行缓存
+   * @param delegate
+   */
   public CachingExecutor(Executor delegate) {
     this.delegate = delegate;
     delegate.setExecutorWrapper(this);
