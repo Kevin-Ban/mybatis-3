@@ -364,6 +364,12 @@ public class XMLConfigBuilder extends BaseBuilder {
 
   /**
    * **** mapper.xml 文件的解析
+   * 加载mapper文件一共有四种方式：
+   *
+   * 1.package <mapper resource="org/apache/ibatis/builder/BlogMapper.xml"/>
+   * 2.resource <mapper url="file:./src/test/java/org/apache/ibatis/builder/NestedBlogMapper.xml"/>
+   * 3.url <mapper class="org.apache.ibatis.builder.CachedAuthorMapper"/>
+   * 4.class <package name="org.apache.ibatis.builder.mapper"/>
    * @param parent
    * @throws Exception
    */
