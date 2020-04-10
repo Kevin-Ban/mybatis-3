@@ -144,6 +144,7 @@ public abstract class BaseExecutor implements Executor {
       throw new ExecutorException("Executor was closed.");
     }
     if (queryStack == 0 && ms.isFlushCacheRequired()) {
+      // ****** 在select语句里面加上 flushCache = 'true' 也可以在查询的时候清理一级缓存
       clearLocalCache();
     }
     List<E> list;
