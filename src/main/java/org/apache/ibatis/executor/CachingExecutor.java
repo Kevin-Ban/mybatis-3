@@ -105,7 +105,7 @@ public class CachingExecutor implements Executor {
     Cache cache = ms.getCache();
     // 如果缓存不为空，则获取缓存中的数据，否则继续执行
     if (cache != null) {
-      // 如果有需要，则清楚缓存
+      // flushCache="true"
       flushCacheIfRequired(ms);
       if (ms.isUseCache() && resultHandler == null) {
         ensureNoOutParams(ms, boundSql);
@@ -176,6 +176,10 @@ public class CachingExecutor implements Executor {
     delegate.clearLocalCache();
   }
 
+  /**
+   * sql标签里面的  flushCache="true" 时，清理缓存
+   * @param ms
+   */
   private void flushCacheIfRequired(MappedStatement ms) {
     Cache cache = ms.getCache();
     if (cache != null && ms.isFlushCacheRequired()) {
