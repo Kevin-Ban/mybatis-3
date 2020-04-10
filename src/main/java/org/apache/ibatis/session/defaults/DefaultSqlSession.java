@@ -74,6 +74,7 @@ public class DefaultSqlSession implements SqlSession {
   @Override
   public <T> T selectOne(String statement, Object parameter) {
     // Popular vote was to return null on 0 results and throw exception on too many.
+    // ****** 当程序员忘记写 limit 1 时，这里会把所有的数据都查出来，占用大量的内存，可以考虑优化
     List<T> list = this.selectList(statement, parameter);
     if (list.size() == 1) {
       return list.get(0);
