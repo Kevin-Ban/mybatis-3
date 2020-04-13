@@ -38,6 +38,7 @@ public class MybatisTest {
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
         Environment environment = new Environment("development", transactionFactory, dataSource);
         Configuration configuration = new Configuration(environment);
+      configuration.setCacheEnabled(false);
         configuration.addMapper(CityMapper.class);
         // 注册一个插件
         configuration.addInterceptor(new MyPlugin());
