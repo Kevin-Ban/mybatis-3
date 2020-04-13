@@ -18,4 +18,6 @@ public interface CityMapper {
 
     @Select("select * from city")
     Map<String, Object> queryOne();
+
+  int insertCity(City city);
 }

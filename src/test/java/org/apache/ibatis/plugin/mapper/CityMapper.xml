@@ -4,4 +4,7 @@
     <select id="queryByXml" parameterType="hashmap" resultType="hashmap">
         select * from city
     </select>
+  <insert id="insertCity" keyProperty="id" useGeneratedKeys="true" parameterType="org.apache.ibatis.plugin.mapper.City">
+    insert into city(code, name) values(#{code}, #{name})
+  </insert>
 </mapper>
