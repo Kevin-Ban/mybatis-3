@@ -98,6 +98,12 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
     }
   }
 
+  /**
+   * ***** 在缓存中查找代理方法，如果没有则生成，并保存在缓存中
+   * @param method
+   * @return
+   * @throws Throwable
+   */
   private MapperMethodInvoker cachedInvoker(Method method) throws Throwable {
     try {
       return methodCache.computeIfAbsent(method, m -> {
