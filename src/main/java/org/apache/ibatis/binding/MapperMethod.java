@@ -95,6 +95,8 @@ public class MapperMethod {
           }
         }
         break;
+      // **** ?????? flush类型的操作作用不明，原先我以为是返回一个空的list集合
+      // 但是，在编写代码的时候无论是注解还是xml里面都不支持flush
       case FLUSH:
         result = sqlSession.flushStatements();
         break;

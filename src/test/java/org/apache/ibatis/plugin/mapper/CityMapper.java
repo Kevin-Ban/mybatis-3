@@ -1,9 +1,6 @@
 package org.apache.ibatis.plugin.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -21,5 +18,4 @@ public interface CityMapper {
 
     @Select("select * from city")
     Map<String, Object> queryOne();
-
 }
